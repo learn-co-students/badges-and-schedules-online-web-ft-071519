@@ -54,7 +54,9 @@ TEXT
   describe '#badge_maker' do
 
     # Question 1
-
+def badge_maker(name)
+  return "Hello, my name is #{name}."
+end
     it 'should return a formatted badge' do
       expect(badge_maker(name)).to eq("Hello, my name is #{name}.")
     end
@@ -64,7 +66,14 @@ TEXT
   describe '#batch_badge_creator' do
 
     # Question 2b
-
+      
+      def batch_badge_creator(names)
+        newbadge = Array.new
+        names.each do|name|
+          newbadge.push("Hello, my name is #{name}.")
+        end
+      return newbadge
+      end
     it 'should return a list of badge messages' do
       expect(batch_badge_creator(attendees)).to eq(badges)
     end
@@ -77,7 +86,13 @@ TEXT
   describe '#assign_rooms' do
 
     # Question 3
-
+def assign_rooms(list)
+  newlist = Array.new
+  list.each_with_index do|speaker,index|
+  newlist.push("Hello, #{speaker}! You'll be assigned to room #{index+1}!")
+  end
+  return newlist
+end
     it 'should return a list of welcome messages and room assignments' do
       expect(assign_rooms(attendees)).to eq(room_assignments)
     end
@@ -93,7 +108,31 @@ TEXT
     # The method `printer` should output first the results of the batch_badge_creator method and then of the assign_rooms method to the screen - this way you can output
     # the badges and room assignments one at a time.
     # To make this test pass, make sure you are iterating through your badges and room assignments lists.
+      def batch_badge_creator(names)
+        newbadge = Array.new
+        names.each do|name|
+          newbadge.push("Hello, my name is #{name}.")
+        end
+      return newbadge
+      end
+def assign_rooms(list)
+  newlist = Array.new
+  list.each_with_index do|speaker,index|
+  newlist.push("Hello, #{speaker}! You'll be assigned to room #{index+1}!")
+  end
+  return newlist
+end
 
+def printer(names)
+  printPatch = batch_badge_creator(names)
+  printPatch.each do|badge|
+  puts badge
+  end
+  assign = assign_rooms(names)
+  assign.each do|badge|
+  puts badge
+  end  
+end
     it 'should puts the list of badges and room_assignments' do
       badges_and_room_assignments.each_line do |line|
         # $stdout is a Ruby global varibale that represents the current standard output.
